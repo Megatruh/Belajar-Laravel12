@@ -1,6 +1,6 @@
 <article class="py-4 max-w-screen-md ">
     <h2 class="mb-1 text-3xl font-bold text-gray-900">
-        <a href="/blog/{{ $posts['slug'] }}" class="hover:underline">
+        <a href="/blog/{{ $posts['slug']}}" class="hover:underline">
             {{ $posts['title'] }}
         </a>
     </h2>
