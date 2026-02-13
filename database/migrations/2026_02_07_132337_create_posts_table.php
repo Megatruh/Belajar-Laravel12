@@ -25,7 +25,6 @@ return new class extends Migration
                 indexName: 'posts_category_id');
 
             $table->string('city');
-            $table->string('date');
             $table->text('body');
             $table->timestamps();
         });

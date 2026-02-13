@@ -10,7 +10,7 @@ class Posts extends Model
 {
     use HasFactory;
     //ini adalah model yang dibuat secara otomatis, sehingga sudah langsung menggunaan eloquent
-    protected $fillable = ['slug', 'title', 'author_id', 'category_id', 'city', 'date', 'body', 'category_id'];
+    protected $fillable = ['slug', 'title', 'author_id', 'category_id', 'city', 'body', 'category_id'];
 
     protected $with = [
         'author',
