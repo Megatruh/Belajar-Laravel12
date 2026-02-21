@@ -25,7 +25,11 @@
     <div class="min-h-full">
         <x-navbar/>
 
-        <x-header :title="$title" />
+
+        <!-- Add padding to prevent content jump -->
+        <div class="h-16"></div>
+        
+        <x-header :title="$title"/>
 
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -37,5 +41,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <script src="{{ asset('JS/script.js') }}"></script>
 </body>
 </html>
