@@ -1,20 +1,14 @@
 <x-layout :title="$title">
-    {{-- <article class="py-1 max-w-screen-md border-b border-gray-300">
-        <div class="text-base text-gray-400 ">
-            <h3 class="pb-2 text-gray-900">
-                <a href="/category/{{ $post->category->slug}}" class="hover:underline">{{ $post->category->name }}</a> > {{ $post['title'] }}
-            </h3>
-            <a href="/author/{{ $post->author->username}}">{{ $post->author->name }}</a> <a href="/city/{{ $post->city }}">| {{ $post->city }}</a> <a href="/date/{{ $post->date }}">| {{ $post->date }}</a>
-        </div>
-        <p class="my-3 font-light">{{ $post['body'] }}</p>
-        <a href="/blog" class="font-medium text-blue-500 hover:underline">&laquo; Back to Blog</a>
-    </article> --}}
+    {{-- 
+    TODO : 
+    - Tambah breadcrubs : Home > Category > Post Title
+    --}}
     <!--
 Install the "flowbite-typography" NPM package to apply styles and format the article content:
 
 URL: https://flowbite.com/docs/components/typography/
 -->
-
+<x-header :title="$title"/>
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
     <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
         <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
@@ -22,7 +16,7 @@ URL: https://flowbite.com/docs/components/typography/
                 <a href="/category/{{ $post->category->slug}}">
                     <span class="text-base text-gray-500 {{ $post->category->color }} mb-2 inline-block">
                         {{ $post->category->name }}
-                    </span>
+                </span>
                 </a>
                 <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
                     {{ $post->title }}
