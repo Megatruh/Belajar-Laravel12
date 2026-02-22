@@ -3,14 +3,14 @@
     - tambah tombol search yang mengambang di pojok kanan bawah, kalau di klik muncul form search yang bisa diisi untuk mencari artikel berdasarkan judul atau isi artikel
  --}}
 <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-    <div class="flex justify-between items-center mb-5 text-gray-500">
+    <div class="flex flex-col gap-2 justify-between items-left mb-3 text-gray-500">
         <a href="/category/{{ $posts->category->slug}}">
             <span class="{{ $posts->category->color }} text-xs font-medium inline-flex items-center px-2.25 py-0.75 rounded">
                 {{ $posts->category->name }}
             </span>
         </a>
         <span class="text-sm">
-            {{ $posts->created_at->diffForHumans() }}
+            {{$posts->city}} | {{ $posts->created_at->diffForHumans() }}
         </span> {{-- -Hapus kolom tanggal, terus ambil data dari created at --}}
     </div>
     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
