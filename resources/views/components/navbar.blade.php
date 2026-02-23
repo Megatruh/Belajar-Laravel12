@@ -21,14 +21,23 @@
         <div class="hidden md:block">
             <div class="ml-3 flex items-center md:ml-6">
 
-                <form class="w-72 mx-auto">
+                <form class="w-72 mx-auto" action="/search" method="GET">
                     <label for="search" class="block mb-2.5 text-sm font-medium text-heading sr-only ">Search</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
                         </div>
-                        <input type="search" id="search" class="block w-full py-1.5 px-3 ps-9 bg-white/10 border border-white/20 text-white text-sm rounded-md focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400 hover:bg-white/15 transition-colors" placeholder="Search Tittle" />
-                        <button type="button" class="absolute end-1 top-1/2 -translate-y-1/2 text-gray-300 bg-gray-700 hover:bg-gray-600 border border-gray-600 focus:ring-2 focus:ring-gray-500 font-medium rounded text-xs px-3 py-1 focus:outline-none transition-colors">Search</button>
+                        <input
+                            type="text"
+                            id="search"
+                            name="keyword"
+                            x-ref="searchInput"
+                            autocomplete="off"
+                            class="block w-full py-1.5 px-3 ps-9 bg-white/10 border border-white/20 text-white text-sm rounded-md focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400 hover:bg-white/15 transition-colors"
+                            placeholder="Search Tittle">
+                        <button
+                            type="button"
+                            class="absolute end-1 top-1/2 -translate-y-1/2 text-gray-300 bg-gray-700 hover:bg-gray-600 border border-gray-600 focus:ring-2 focus:ring-gray-500 font-medium rounded text-xs px-3 py-1 focus:outline-none transition-colors">Search</button>
                     </div>
                 </form>
 

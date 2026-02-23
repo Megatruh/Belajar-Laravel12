@@ -27,14 +27,13 @@ Route::get('/blog', function () {
 // Search route
 Route::get('/search', function () {
     $query = request('keyword');
-    
-    
+
+
     $posts = Posts::latest()
         ->where('title', 'like', '%' . $query . '%')
-        ->orWhere('body', 'like', '%' . $query . '%')
         ->orWhere('city', 'like', '%' . $query . '%')
         ->get();
-    
+
     return view('blog', [
         'title' => 'Hasil pencarian: ' . $query,
         'posts' => $posts
