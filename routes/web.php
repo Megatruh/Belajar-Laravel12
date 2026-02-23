@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('home', ['title'=> 'Home Page']); // Passing data ke view - $title untuk judul halaman
+Route::get('/', function (Posts $posts) {
+    return view('home', [
+        'title'=> 'Home Page',
+        'posts' => $posts
+    ]); // Passing data ke view - $title untuk judul halaman
 });
 
 Route::get('/blog', function () {
@@ -19,6 +22,23 @@ Route::get('/blog', function () {
 
     $posts = Posts::latest()->get();
     return view('blog', ['title' => 'Blog Page', 'posts' => $posts]);
+});
+
+// Search route
+Route::get('/search', function () {
+    $query = request('keyword');
+    
+    
+    $posts = Posts::latest()
+        ->where('title', 'like', '%' . $query . '%')
+        ->orWhere('body', 'like', '%' . $query . '%')
+        ->orWhere('city', 'like', '%' . $query . '%')
+        ->get();
+    
+    return view('blog', [
+        'title' => 'Hasil pencarian: ' . $query,
+        'posts' => $posts
+    ]);
 });
 
 Route::get( '/blog/{posts:slug}', function (Posts $posts){

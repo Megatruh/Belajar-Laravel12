@@ -1,19 +1,17 @@
 <x-layout :title="$title">
-
-    <!--
-Install the "flowbite-typography" NPM package to apply styles and format the article content:
-
-URL: https://flowbite.com/docs/components/typography/
--->
-
-<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
+    {{--
+    TODO :
+    - Tambah breadcrubs : Home > Category > Post Title
+    --}}
+    <x-header :title="$title" :post="$post"/>
+<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 max-w-4xl mx-auto bg-white dark:bg-gray-900 antialiased">
     <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
         <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <header class="mb-4 lg:mb-6 not-format">
                 <a href="/category/{{ $post->category->slug}}">
                     <span class="text-base text-gray-500 {{ $post->category->color }} mb-2 inline-block">
                         {{ $post->category->name }}
-                    </span>
+                </span>
                 </a>
                 <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
                     {{ $post->title }}
