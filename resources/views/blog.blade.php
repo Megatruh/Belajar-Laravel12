@@ -1,5 +1,5 @@
 <x-layout :title="$title">
-    <div class="py-2 px-4 mx-auto max-w-screen-xl lg:py-6 lg:px-6">
+    <div class="py-2 px-4 mx-auto max-w-screen-xl lg:py-4 lg:px-6">
         <div class="grid gap-8 lg:grid-cols-3 md:grid-cols-2">
             @foreach ( $posts as $data_artikel )
                 {{-- Kirim data artikel ke komponen artikel --}}
