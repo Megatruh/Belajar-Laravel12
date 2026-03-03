@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Posts;
-use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -16,28 +15,9 @@ Route::get('/', function (Posts $posts) {
 });
 
 Route::get('/blog', function () {
+    $posts = Posts::filter(request(['keyword', 'category', 'author', 'city']))->get();
 
-    // $posts = Posts::with(['author', 'category'])->latest()->get();
-    // return view('blog', ['title' => 'Blog Page', 'posts' => $posts]);
-
-    $posts = Posts::latest()->get();
     return view('blog', ['title' => 'Blog Page', 'posts' => $posts]);
-});
-
-// Search route
-Route::get('/search', function () {
-    $query = request('keyword');
-
-
-    $posts = Posts::latest()
-        ->where('title', 'like', '%' . $query . '%')
-        ->orWhere('city', 'like', '%' . $query . '%')
-        ->get();
-
-    return view('blog', [
-        'title' => 'Hasil pencarian: ' . $query,
-        'posts' => $posts
-    ]);
 });
 
 Route::get( '/blog/{posts:slug}', function (Posts $posts){
@@ -48,23 +28,9 @@ Route::get( '/blog/{posts:slug}', function (Posts $posts){
     ]);
 
 });
-Route::get( '/author/{user:username}', function (User $user){
 
-    // $posts = $user->posts->load(['category', 'author']);
-    // return view( 'blog', [
-    //     'title' => $posts->count() . ' Articles by '. $user->name,
-    //     'posts' => $posts
-    // ]);
 
-    $posts = $user->posts;
-    return view( 'blog', [
-        'title' => $posts->count() . ' Articles by '. $user->name,
-        'posts' => $posts
-    ]);
-
-});
-
-Route::get( '/city/{city}', function ($city){
+Route::get( '/blog?city={city}', function ($city){
     // $posts = Posts::where('city', $city)->with(['category', 'author'])->get();
     // return view( 'blog', [
     //     'title' => $posts->count() . ' Articles on '. $city,
@@ -96,7 +62,7 @@ Route::get( '/date/{date}', function ($date){
     ]);
 });
 
-Route::get( '/category/{category:slug}', function (Category $category){
+Route::get( '/blog?category={category:slug}', function (Category $category){
 
     // $posts = Posts::where('category_id', $category->id)->with(['category', 'author'])->get();
 

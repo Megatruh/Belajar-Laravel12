@@ -4,6 +4,8 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Posts extends Model
@@ -24,5 +26,25 @@ class Posts extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+    #[Scope]
+    public function scopeFilter(Builder $query, array $filters)
+    {
+        $query->when($filters['keyword'] ?? false, function($query, $titleSeach){
+            return $query->where('title', 'like', '%'.$titleSeach.'%');
+        });
+        $query->when($filters['city'] ?? false, function($query, $citySeach){
+            return $query->where('city', 'like', '%'.$citySeach.'%');
+        });
+        $query->when($filters['category'] ?? false, function($query, $categorySeach){
+            return $query->whereHas(
+                'category',
+                fn($query) => $query->where('slug', $categorySeach));
+        });
+        $query->when($filters['author'] ?? false, function($query, $authorSeach){
+            return $query->whereHas(
+                'author',
+                fn($query) => $query->where('username', $authorSeach));
+        });
     }
 }

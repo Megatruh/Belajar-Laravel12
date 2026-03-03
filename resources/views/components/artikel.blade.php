@@ -1,17 +1,18 @@
-{{-- 
-    TODO : 
+{{--
+    TODO :
     - tambah tombol search yang mengambang di pojok kanan bawah, kalau di klik muncul form search yang bisa diisi untuk mencari artikel berdasarkan judul atau isi artikel
  --}}
 <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
     <div class="flex flex-col gap-2 justify-between items-left mb-3 text-gray-500">
-        <a href="/category/{{ $posts->category->slug}}">
+        <a href="/blog?category={{ $posts->category->slug}}">
             <span class="{{ $posts->category->color }} text-xs font-medium inline-flex items-center px-2.25 py-0.75 rounded">
                 {{ $posts->category->name }}
             </span>
         </a>
-        <span class="text-sm">
+        <a href="/blog?city={{ $posts->city }}"><span class="text-sm">
             {{$posts->city}} | {{ $posts->created_at->diffForHumans() }}
         </span> {{-- -Hapus kolom tanggal, terus ambil data dari created at --}}
+        </a>
     </div>
     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         <a href="/blog/{{ $posts['slug']}}">
@@ -23,7 +24,7 @@
     </p>
     <div class="flex justify-between items-center">
         <div class="flex items-center space-x-4">
-            <a href="/author/{{ $posts->author->username }}" class="flex items-center space-x-2">
+            <a href="/blog?author={{ $posts->author->username }}" class="flex items-center space-x-2">
             <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="{{ $posts->author->name }}" />
                 <span class="font-xs dark:text-white">
                     {{ $posts->author->name }}
