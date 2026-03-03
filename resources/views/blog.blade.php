@@ -33,14 +33,19 @@
                     id="search"
                     name="keyword"
                     class="block w-full p-3 ps-9 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
-                    placeholder="Search" />
-                <button type="button" class="bg-gray-800 absolute end-1.5 bottom-1.5 text-white hover:bg-gray-500 box-border hover:text-gray-900 border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none">Search</button>
+                    placeholder="Search Title ..." />
+                <button type="submit" class="bg-gray-800 absolute end-1.5 bottom-1.5 text-white hover:bg-gray-500 box-border hover:text-gray-900 border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none">Search</button>
             </div>
         </form>
-        <div class="grid gap-8 lg:grid-cols-3 md:grid-cols-2">
-            @foreach($posts as $post)
+
+        {{ $posts->links() }}
+
+        <div class="mt-6 grid gap-8 lg:grid-cols-3 md:grid-cols-2">
+            @forelse($posts as $post)
                 <x-artikel :posts="$post" />
-            @endforeach
+            @empty
+                <p class="text-center text-gray-500">No posts found. <a href="/blog" class="text-blue-500 hover:underline">Back to Blog</a></p>
+            @endforelse
         </div>
     </div>
 </x-layout>

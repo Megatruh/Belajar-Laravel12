@@ -15,7 +15,7 @@ Route::get('/', function (Posts $posts) {
 });
 
 Route::get('/blog', function () {
-    $posts = Posts::filter(request(['keyword', 'category', 'author', 'city']))->get();
+    $posts = Posts::filter(request(['keyword', 'category', 'author', 'city']))->paginate(9)->withQueryString();
 
     return view('blog', ['title' => 'Blog Page', 'posts' => $posts]);
 });
